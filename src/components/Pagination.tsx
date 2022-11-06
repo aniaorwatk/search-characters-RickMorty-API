@@ -1,29 +1,24 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-
-interface IPaginationTyp{ 
+interface IPaginationTyp {
     setNumberPage: React.Dispatch<React.SetStateAction<number>>,
     numberPage: number,
-    totalPages:number,
+    totalPages: number,
 }
 
-const Pagination =({setNumberPage,numberPage,totalPages }: IPaginationTyp)=>{
-
+const Pagination = ({ setNumberPage, numberPage, totalPages }: IPaginationTyp) => {
     const upPage = () => {
         setNumberPage((prevNumberPage: number) => { return (prevNumberPage + 1) })
     }
-
     const downPage = () => {
-        setNumberPage((prevNumberPage: number)=> { return (prevNumberPage - 1) })
+        setNumberPage((prevNumberPage: number) => { return (prevNumberPage - 1) })
     }
 
-    console.log(numberPage)
+    const up = () => { numberPage === totalPages ? numberPage === totalPages || downPage() : upPage() }
+    const down = () => { numberPage === 1 ? numberPage === 1 || upPage() : downPage() }
 
-    const up = () => { numberPage === totalPages ? numberPage === totalPages ||downPage() : upPage() }
-    const down = () => { numberPage === 1 ? numberPage === 1 || upPage():  downPage()}
-
-    return(
+    return (
         <div>
             <p>Change characters</p>
             <p>Page {numberPage}/{totalPages}</p>

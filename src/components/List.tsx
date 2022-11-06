@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Avatar, ListItemAvatar } from "@mui/material";
 import Pagination from "./Pagination";
 import "../style.css";
+import { Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
-interface Character {
-    results: any;
+export interface Character {
     id: number,
     name: string,
     image: string,
@@ -33,25 +34,20 @@ const List = () => {
                 const msg = `Characters not found: ${res.status}`
                 throw alert(msg)
             }
-
             setDataList(data)
             setTotalPages(dataTotal.info.pages)
-            console.log(dataTotal.info.pages)
-
         };
         apiUser()
     }, [numberPage]);
 
     return (
-        <Box
-            sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
-        >
+        <div>
             <h2>Read more about your favorite character!!!!!</h2>
-
             {dataList.map(characters => {
                 return (
                     <ListItem
-                    className="listItem xx"
+                        className="listItem xx"
+
                         key={characters.id}
                     >
                         <ListItemButton>
@@ -61,16 +57,19 @@ const List = () => {
                                     src={characters.image}
                                 />
                             </ListItemAvatar>
-                            <ListItemText primary={characters.name} />
+                            <Link to={`/${characters.id}`}>
+                                <ListItemText primary={characters.name} />
+                            </Link>
                         </ListItemButton>
                     </ListItem>)
             })}
-           <Pagination 
-           setNumberPage={setNumberPage}
-           numberPage={numberPage}
-           totalPages={totalPages}
-           />
-        </Box>
+            <Pagination
+                setNumberPage={setNumberPage}
+                numberPage={numberPage}
+                totalPages={totalPages}
+            />
+            <Outlet />
+        </div>
     )
 }
 

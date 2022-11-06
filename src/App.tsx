@@ -1,10 +1,24 @@
 import List from "./components/List";
+import SinglePage from "./components/SingleCharacter";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <List />,
+    children: [
+      {
+        path: "/:id",
+        element: <SinglePage />,
+      },
+    ],
+  },
+]);
 
-function App() {
+const App =()=> {
   return (
     <div className="App">
-<List/>
+      <RouterProvider router={router} />
     </div>
   );
 }
