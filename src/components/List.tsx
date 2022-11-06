@@ -8,6 +8,7 @@ import "../style.css";
 import { Link } from 'react-router-dom';
 import SinglePage from "./SingleCharacter";
 import { Route, Routes } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
 export interface Character {
     id: number,
@@ -34,18 +35,14 @@ const List = () => {
                 const msg = `Characters not found: ${res.status}`
                 throw alert(msg)
             }
-
             setDataList(data)
             setTotalPages(dataTotal.info.pages)
-            console.log(dataTotal.info.pages)
-
         };
         apiUser()
     }, [numberPage]);
 
     return (
-        <div
-        >
+        <div>
             <h2>Read more about your favorite character!!!!!</h2>
             {dataList.map(characters => {
                 return (
@@ -71,6 +68,7 @@ const List = () => {
                 numberPage={numberPage}
                 totalPages={totalPages}
             />
+           <Outlet />
         </div>
     )
 }
