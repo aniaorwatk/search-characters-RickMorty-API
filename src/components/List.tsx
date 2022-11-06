@@ -1,82 +1,56 @@
-import React, { useEffect, useState } from "react";
-import Box from '@mui/material/Box';
+import { useEffect, useState } from "react";
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { Avatar, Divider, ListItemAvatar, Typography } from "@mui/material";
-import { stripVTControlCharacters } from "util";
-// import List from '@mui/material/List';
+import { Avatar, ListItemAvatar } from "@mui/material";
+import Pagination from "./Pagination";
+import "../style.css";
+import { Link } from 'react-router-dom';
+import SinglePage from "./SingleCharacter";
+import { Route, Routes } from 'react-router-dom';
 
-
-interface Character {
-    results: any;
+export interface Character {
     id: number,
     name: string,
     image: string,
-    pages:number,
+    pages: number,
 }
-
-
-
-
-
-
-
-
-
-
-
 
 const List = () => {
 
-
     const [dataList, setDataList] = useState<Character[]>([])
-    const [numberPage, setNumberPage]=useState(1)
-    const [totalPages, setTotalPages]=useState(0)
+    const [numberPage, setNumberPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
 
     useEffect(() => {
-    const apiUser = async () => {
-        const URL = `https://rickandmortyapi.com/api/character/?page=${numberPage}`;
-        const res = await fetch(URL)
-        const json = await res.json()
-        const data = json.results;
-        const dataTotal = json;
+        const apiUser = async () => {
+            const URL = `https://rickandmortyapi.com/api/character/?page=${numberPage}`;
+            const res = await fetch(URL)
+            const json = await res.json()
+            const data = json.results;
+            const dataTotal = json;
 
-        if (!(res.status === 200)) {
-            const msg = `Users not found: ${res.status}`
-            throw alert(msg)
-        }
+            if (!(res.status === 200)) {
+                const msg = `Characters not found: ${res.status}`
+                throw alert(msg)
+            }
 
+            setDataList(data)
+            setTotalPages(dataTotal.info.pages)
+            console.log(dataTotal.info.pages)
 
+        };
+        apiUser()
+    }, [numberPage]);
 
-        // setDataList(data.info.count)
-        setDataList(data)
-        setTotalPages(dataTotal.info.pages)
-        console.log(dataTotal.info.pages)
-
-
-        //   setTotalPages(json.total_pages)
-        //   setNumberPage(json.page)
-    };
-    apiUser()
-
-}, []);
-
-
-
-    // const character = dataList.map((character)=>{
-    //     return <li key={character.id}>{character.name}</li>
-    //     })
     return (
-        <Box
-            sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
+        <div
         >
             <h2>Read more about your favorite character!!!!!</h2>
-
             {dataList.map(characters => {
                 return (
-                     <ListItem
+                    <ListItem
+                        className="listItem xx"
                         key={characters.id}
                     >
                         <ListItemButton>
@@ -86,11 +60,18 @@ const List = () => {
                                     src={characters.image}
                                 />
                             </ListItemAvatar>
-                            <ListItemText primary={characters.name} />
+                            <Link to={`/${characters.id}`}>
+                                <ListItemText primary={characters.name} />
+                            </Link>
                         </ListItemButton>
                     </ListItem>)
             })}
-        </Box>
+            <Pagination
+                setNumberPage={setNumberPage}
+                numberPage={numberPage}
+                totalPages={totalPages}
+            />
+        </div>
     )
 }
 

@@ -1,0 +1,19 @@
+.listItem xx{
+    margin: 0;
+    padding: 0;
+}
+
+.css-1p823my-MuiListItem-root {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.App{
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
