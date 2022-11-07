@@ -15,11 +15,17 @@ interface ISinglePageType{
     species: string,
 }
 
+type IType={
+    id: number,
+    name: string,
+    image: string,
+}
+
 
 const SinglePage =()=>{
     const para = useParams()
 
-    const [dataCharacter, setDataCharacter] = useState<ISinglePageType[]>([])
+    const [dataCharacter, setDataCharacter] = useState([])
     
 
     useEffect(() => {
