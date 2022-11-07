@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Character } from "./List";
-import { useParams } from 'react-router-dom';
 
 interface ISinglePageType {
     id: number,
@@ -15,12 +15,9 @@ interface ISinglePageType {
     species: string,
 }
 
-
 const SinglePage = () => {
     const para = useParams()
-
-    const [dataCharacter, setDataCharacter] = useState<ISinglePageType[]>([])
-
+    const [dataCharacter, setDataCharacter] = useState<Character[]>([])
 
     useEffect(() => {
         const apiUser = async () => {
@@ -29,21 +26,18 @@ const SinglePage = () => {
             const json = await res.json()
             const data = json
 
-
             if (!(res.status === 200)) {
                 const msg = `Character not found: ${res.status}`
                 throw alert(msg)
             }
 
             setDataCharacter(data)
-            console.log(data)
-
         };
         apiUser()
     }, [para]);
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }} className="card">
             <CardMedia
                 component="img"
                 height="300"

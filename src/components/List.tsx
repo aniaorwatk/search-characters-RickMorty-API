@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import ListItem from '@mui/material/ListItem';
+import { Link, Outlet } from 'react-router-dom';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Avatar, ListItemAvatar } from "@mui/material";
 import Pagination from "./Pagination";
 import "../style.css";
-import { Link } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
-import { Outlet } from "react-router-dom";
 
 export interface Character {
     id: number,
@@ -41,33 +38,30 @@ const List = () => {
     }, [numberPage]);
 
     return (
-        <div>
-            <h2>Read more about your favorite character!!!!!</h2>
-            {dataList.map(characters => {
-                return (
-                    <ListItem
-                        className="listItem xx"
-
-                        key={characters.id}
-                    >
-                        <ListItemButton>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt={characters.name}
-                                    src={characters.image}
-                                />
-                            </ListItemAvatar>
-                            <Link to={`/${characters.id}`}>
+        <div className="list">
+            <div>
+                <h2>Read more about your favorite character!!!!!</h2>
+                {dataList.map(characters => {
+                    return (
+                        <Link to={`/${characters.id}`} key={characters.id}  >
+                            <ListItemButton id="item">
+                                <ListItemAvatar>
+                                    <Avatar
+                                        alt={characters.name}
+                                        src={characters.image}
+                                    />
+                                </ListItemAvatar>
                                 <ListItemText primary={characters.name} />
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>)
-            })}
-            <Pagination
-                setNumberPage={setNumberPage}
-                numberPage={numberPage}
-                totalPages={totalPages}
-            />
+                            </ListItemButton>
+                        </Link>
+                    )
+                })}
+                 <Pagination
+                    setNumberPage={setNumberPage}
+                    numberPage={numberPage}
+                    totalPages={totalPages}
+                />               
+            </div>
             <Outlet />
         </div>
     )
