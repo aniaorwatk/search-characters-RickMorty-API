@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import ListItem from '@mui/material/ListItem';
+import { Link, Outlet } from 'react-router-dom';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Avatar, ListItemAvatar } from "@mui/material";
 import Pagination from "./Pagination";
 import "../style.css";
-import { Link } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
-import { Outlet } from "react-router-dom";
 
 export interface Character {
     id: number,
@@ -43,14 +40,10 @@ const List = () => {
     return (
         <div className="list">
             <div>
-            <h2>Read more about your favorite character!!!!!</h2>
-            {dataList.map(characters => {
-                return (
-                    // <ListItem
-                    //     className="listItem"
-                       
-                    // >
-                        <Link to={`/${characters.id}`}  key={characters.id}  >
+                <h2>Read more about your favorite character!!!!!</h2>
+                {dataList.map(characters => {
+                    return (
+                        <Link to={`/${characters.id}`} key={characters.id}  >
                             <ListItemButton id="item">
                                 <ListItemAvatar>
                                     <Avatar
@@ -61,15 +54,14 @@ const List = () => {
                                 <ListItemText primary={characters.name} />
                             </ListItemButton>
                         </Link>
-                    // </ListItem> 
                     )
-            })}
+                })}
+                 <Pagination
+                    setNumberPage={setNumberPage}
+                    numberPage={numberPage}
+                    totalPages={totalPages}
+                />               
             </div>
-            <Pagination
-                setNumberPage={setNumberPage}
-                numberPage={numberPage}
-                totalPages={totalPages}
-            />
             <Outlet />
         </div>
     )
