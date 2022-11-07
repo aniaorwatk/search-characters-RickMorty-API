@@ -1,21 +1,31 @@
-.listItem xx{
+.listItem{
     margin: 0;
     padding: 0;
+}
+#item {
+    margin: 1px;
+    padding: 1px;
 }
 
 .css-1p823my-MuiListItem-root {
     margin: 0;
     padding: 0;
-
 }
 
 a{
     text-decoration: none;
 }
 
-.App{
+.wrapper{
 display: flex;
 flex-direction: row;
 justify-content: center;
+}
 
+.list{
+    display: flex;
+}
+
+.card{
+    align-self: center;
 }

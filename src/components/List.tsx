@@ -41,28 +41,30 @@ const List = () => {
     }, [numberPage]);
 
     return (
-        <div>
+        <div className="list">
+            <div>
             <h2>Read more about your favorite character!!!!!</h2>
             {dataList.map(characters => {
                 return (
-                    <ListItem
-                        className="listItem xx"
-
-                        key={characters.id}
-                    >
-                        <ListItemButton>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt={characters.name}
-                                    src={characters.image}
-                                />
-                            </ListItemAvatar>
-                            <Link to={`/${characters.id}`}>
+                    // <ListItem
+                    //     className="listItem"
+                       
+                    // >
+                        <Link to={`/${characters.id}`}  key={characters.id}  >
+                            <ListItemButton id="item">
+                                <ListItemAvatar>
+                                    <Avatar
+                                        alt={characters.name}
+                                        src={characters.image}
+                                    />
+                                </ListItemAvatar>
                                 <ListItemText primary={characters.name} />
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>)
+                            </ListItemButton>
+                        </Link>
+                    // </ListItem> 
+                    )
             })}
+            </div>
             <Pagination
                 setNumberPage={setNumberPage}
                 numberPage={numberPage}

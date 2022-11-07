@@ -1,7 +1,7 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import List from "./components/List";
 import SinglePage from "./components/SingleCharacter";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import "./style.css"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 
 const App =()=> {
   return (
-    <div className="App">
+    <div className="wrapper">
       <RouterProvider router={router} />
     </div>
   );
