@@ -9,14 +9,23 @@ interface IPaginationTyp {
 
 const Pagination = ({ setNumberPage, numberPage, totalPages }: IPaginationTyp) => {
     const upPage = () => {
-        setNumberPage((prevNumberPage: number) => { return (prevNumberPage + 1) })
+        setNumberPage((prevNumberPage: number) => prevNumberPage + 1)
     }
     const downPage = () => {
-        setNumberPage((prevNumberPage: number) => { return (prevNumberPage - 1) })
+        setNumberPage((prevNumberPage: number) => prevNumberPage - 1)
     }
 
-    const up = () => { numberPage === totalPages ? numberPage === totalPages || downPage() : upPage() }
-    const down = () => { numberPage === 1 ? numberPage === 1 || upPage() : downPage() }
+    const up = () => { 
+        if(numberPage < totalPages){
+            upPage()
+        }
+     }
+
+    const down = () => {
+        if(numberPage > 1){
+            downPage()
+        }
+     }
 
     return (
         <div>

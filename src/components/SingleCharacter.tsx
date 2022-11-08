@@ -6,18 +6,18 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Character } from "./List";
 
-interface ISinglePageType {
-    id: number,
-    name: string,
-    image: string,
-    pages: number,
-    status: string,
-    species: string,
-}
+// interface ISinglePageType {
+//     id: number,
+//     name: string,
+//     image: string,
+//     pages: number,
+//     status: string,
+//     species: string,
+// }
 
 const SinglePage = () => {
     const para = useParams()
-    const [dataCharacter, setDataCharacter] = useState<Character[]>([])
+    const [dataCharacter, setDataCharacter] = useState<Character>()
 
     useEffect(() => {
         const apiUser = async () => {
@@ -30,7 +30,6 @@ const SinglePage = () => {
                 const msg = `Character not found: ${res.status}`
                 throw alert(msg)
             }
-
             setDataCharacter(data)
         };
         apiUser()

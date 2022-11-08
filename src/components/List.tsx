@@ -11,6 +11,8 @@ export interface Character {
     name: string,
     image: string,
     pages: number,
+    status: string,
+    species: string,
 }
 
 const List = () => {
