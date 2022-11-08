@@ -9,13 +9,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/:id",
-        element: <SinglePage />,
+        element: <SinglePage  />,
       },
     ],
   },
 ]);
 
-const App =()=> {
+const App = () => {
   return (
     <div className="wrapper">
       <RouterProvider router={router} />
