@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/search-characters-RickMorty-API/static/css/main.1894aaea.css",
+    "main.js": "/search-characters-RickMorty-API/static/js/main.aed6ae21.js",
+    "index.html": "/search-characters-RickMorty-API/index.html",
+    "main.1894aaea.css.map": "/search-characters-RickMorty-API/static/css/main.1894aaea.css.map",
+    "main.aed6ae21.js.map": "/search-characters-RickMorty-API/static/js/main.aed6ae21.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1894aaea.css",
+    "static/js/main.aed6ae21.js"
+  ]
+}
